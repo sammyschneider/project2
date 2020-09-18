@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Edit Job Application</h1>
+    <form class="" action="/applications/<%=application.id%>?_method=PUT" method="POST">
+      <input type="text" name="companyName" value="<%=application.companyName%>" /><br>
+      <input type="text" name="jobTitle" value="<%=application.jobTitle%>"/><br>
+      <input type="text" name="location" value="<%=application.location%>"/><br>
+      <input type="text" name="jobLink" value="<%=application.jobLink%>"/><br>
+      <input type="number" name="desired" value="<%=application.desired%>"/><br>
+      <input type="date" name="date" value="<%=application.date%>"/><br>
+      <input type="submit" value="Edit Job App">
+    </form>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>All Jobs Applied For</h1>
+    <% for (let i=0;i<applications.length;i++) { %>
+      <div class="applications">
+        <li><a href="/applications/<%=applications[i].id%>"><%=applications[i].companyName%></a></li>
+        
+
+      </div>
+    <% } %>
+  </body>
+</html>
