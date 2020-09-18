@@ -43,3 +43,24 @@
   text-decoration: none;
   color: black;
 }
+#card-style {
+  margin: auto;
+  margin-top: 6%;
+  background-color: aliceblue;
+}
+#card-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+#edit-form {
+  width: fit-content;
+  margin: auto;
+  padding: 6%;
+}
+#slot {
+  padding: 6%;
+  margin-bottom: 2%;
+}
+#number {
+  width: 18%;
+}

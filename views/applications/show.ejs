@@ -2,19 +2,22 @@
   <body>
     <%- include ('../partials/nav.ejs') %>
 
-    <div class="card" style="width: 18rem;">
+    <div class="card" id="card-style" style=" width: 29rem;">
       <div class="card-body">
         <h5 class="card-title"><%=application.companyName%></h5>
         <h6 class="card-subtitle mb-2 text-muted"><%=application.jobTitle%></h6>
         <p class="card-text">Location: <%=application.location%></p><br>
-        <a href="www.google.com">Link To Job Posting</a>
         <p class="card-text">Link: <%=application.jobLink%></p><br>
-        <p class="card-text">Rating: <%=application.desired%></p><br>
+        <p class="card-text">Rating: <%=application.desired%>/5</p><br>
         <p class="card-text">Date Applied: <%=application.date%></p><br>
-        <a class="card-link"href="/applications/<%=application.id%>/edit">Edit</a>
-        <form action="/applications/<%=application._id%>?_method=DELETE" method="POST">
-          <input type="submit" value="DELETE"/>
-        </form>
+        <div id="card-buttons"
+
+          <form action="/applications/<%=application._id%>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete"/>
+          </form>
+          <button id="edit-btn"type="button" name="button"><a href="/applications/<%=application.id%>/edit">Edit</a></button>
+          <button type="button" name="button"><a href="/applications">Back</a></button>
+        </div>
       </div>
 
     </div>

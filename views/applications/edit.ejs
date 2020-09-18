@@ -2,15 +2,20 @@
   <body>
     <%- include ('../partials/nav.ejs') %>
 
-    <h1>Edit Job Application</h1>
+    <h2>Edit Job Application</h2>
     <form class="" action="/applications/<%=application.id%>?_method=PUT" method="POST">
-      <input type="text" name="companyName" value="<%=application.companyName%>" /><br>
-      <input type="text" name="jobTitle" value="<%=application.jobTitle%>"/><br>
-      <input type="text" name="location" value="<%=application.location%>"/><br>
-      <input type="text" name="jobLink" value="<%=application.jobLink%>"/><br>
-      <input type="number" name="desired" value="<%=application.desired%>"/><br>
-      <input type="date" name="date" value="<%=application.date%>"/><br>
-      <input type="submit" value="Edit Job App">
+      <div id="edit-form">
+
+
+      <input id="slot" type="text" name="companyName" placeholder="Company Name" value="<%=application.companyName%>" /><br>
+      <input id="slot" type="text" name="jobTitle" placeholder="Job Title" value="<%=application.jobTitle%>"/><br>
+      <input id="slot" type="text" name="location" placeholder="Location" value="<%=application.location%>"/><br>
+      <input id="slot" type="text" name="jobLink" placeholder="<Link>" value="<%=application.jobLink%>"/><br>
+      <input id="slot" type="number" name="desired" placeholder="Rank" value="<%=application.desired%>"/><br>
+      <input id="slot" type="date" name="date" value="<%=application.date%>"/><br>
+      <input type="submit" value="Edit">
+      <button type="button" name="button"><a href="/applications/<%=application.id%>">Back</a></button>
+      </div>
     </form>
   </body>
 </html>
