@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+  <%- include ('../partials/head.ejs') %>
   <body>
-    <h1>All Jobs Applied For</h1>
+    <%- include ('../partials/nav.ejs') %>
+  <div class="apps">
     <% for (let i=0;i<applications.length;i++) { %>
-      <div class="applications">
-        <li><a href="/applications/<%=applications[i].id%>"><%=applications[i].companyName%></a></li>
-        
+        <div class="app-circle">
+            <button class="app-button"><a class="app-link" href="/applications/<%=applications[i].id%>"><%=applications[i].companyName%></a></button>
+        </div>
 
-      </div>
+
     <% } %>
+  </div>
   </body>
 </html>

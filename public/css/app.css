@@ -1,0 +1,45 @@
+/* body {
+  background-color: blue;
+} */
+.apps {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 2em;
+  padding: 2em;
+  flex-wrap: wrap;
+}
+.app-circle {
+  margin: 30px;
+}
+.app-link {
+  font-size: 30px;
+  padding: 10px;
+  color: black;
+}
+.app-link:hover{
+  color: blue;
+  text-decoration: none;
+}
+.app-button{
+  border-radius: 1em;
+}
+.jumbotron {
+  margin-top: 20%;
+  margin-left: 6%;
+  margin-right: 6%;
+
+}
+#sign-btn {
+  margin-right: 1%;
+}
+#signin-btn {
+  margin-left: 1%;
+}
+#back {
+  color: white;
+  margin-left: 1%;
+}
+#back-link {
+  text-decoration: none;
+  color: black;
+}

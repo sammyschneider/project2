@@ -7,6 +7,8 @@ const mongoose = require ('mongoose');
 const app = express ();
 const db = mongoose.connection;
 require('dotenv').config()
+const session = require('express-session')
+
 //___________________
 //Port
 //___________________
@@ -19,10 +21,18 @@ const PORT = process.env.PORT || 3003;
 // How to connect to the database either via heroku or locally
 const MONGODB_URI = process.env.MONGODB_URI;
 
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false
+  })
+)
+
 // Connect to Mongo &
 // Fix Depreciation Warnings from Mongoose
 // May or may not need these depending on your Mongoose version
-mongoose.connect(MONGODB_URI , { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, }
+mongoose.connect(MONGODB_URI , { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true }
 );
 
 // Error / success
@@ -47,10 +57,10 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 // Controllers
 const applicationsController = require('./controllers/applications_controller.js')
 app.use('/applications', applicationsController)
-// const userController = require('./controllers/users_controller.js')
-// app.use('/users', userController)
-// const sessionsController = require('./controllers/sessions_controller.js')
-// app.use('/sessions',sessionsController)
+const userController = require('./controllers/users_controller.js')
+app.use('/users', userController)
+const sessionsController = require('./controllers/sessions_controller.js')
+app.use('/sessions',sessionsController)
 
 
 //___________________
@@ -58,7 +68,7 @@ app.use('/applications', applicationsController)
 //___________________
 //localhost:3000
 app.get('/' , (req, res) => {
-  res.redirect('/applications');
+  res.render('./applications/home.ejs');
 });
 
 //___________________

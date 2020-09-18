@@ -1,16 +1,25 @@
 const express = require('express')
 const Application = require('../models/applications.js')
 const applications = express.Router()
-
+const isAuthenticated = (req,res,next) => {
+  if (req.session.currentUser) {
+    return next()
+  } else {
+    res.redirect('/')
+  }
+}
 // NEW
-applications.get('/new', (req,res) => {
-  res.render('applications/new.ejs')
+applications.get('/new', isAuthenticated, (req,res) => {
+  res.render('applications/new.ejs', {
+      currentUser: req.session.currentUser
+    })
 })
 // EDIT
 applications.get('/:id/edit',(req,res) => {
   Application.findById(req.params.id, (error, foundApp) => {
     res.render('applications/edit.ejs', {
-      application: foundApp
+      application: foundApp,
+      currentUser: req.session.currentUser
     })
   })
 })
@@ -21,10 +30,11 @@ applications.delete('/:id', (req,res) => {
   })
 })
 //SHOW
-applications.get('/:id', (req,res) => {
+applications.get('/:id', isAuthenticated, (req,res) => {
   Application.findById(req.params.id, (error, foundApp) => {
     res.render('applications/show.ejs', {
-      application: foundApp
+      application: foundApp,
+      currentUser: req.session.currentUser
     })
   })
 })
@@ -41,10 +51,11 @@ applications.post('/', (req,res) => {
   })
 })
 //INDEX
-applications.get('/', (req,res) => {
+applications.get('/', isAuthenticated, (req,res) => {
   Application.find({}, (error, allApps) => {
     res.render('applications/index.ejs', {
-      applications: allApps
+      applications: allApps,
+      currentUser: req.session.currentUser
     })
   })
 })
