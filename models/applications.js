@@ -6,7 +6,7 @@ const appSchema = new mongoose.Schema({
   location: String,
   jobLink: String,
   desired: {type: Number, max:5, min:0},
-  date: Date
+  date: {type:Date, default: Date.now()}
 })
 
 const Application = mongoose.model('Application', appSchema)
