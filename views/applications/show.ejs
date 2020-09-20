@@ -1,8 +1,9 @@
 <%- include ('../partials/head.ejs') %>
   <body>
     <%- include ('../partials/nav.ejs') %>
-
     <div class="card" id="card-style" style=" width: 29rem;">
+      <button id="edit-btn"type="button" name="button"><a id="edit-btn"href="/applications/<%=application.id%>/edit">Edit</a></button>
+      <button id="edit-btn"type="button" name="button"><a id="edit-btn"href="/applications">Back</a></button>
       <div class="card-body">
         <h5 class="card-title"><%=application.companyName%></h5>
         <h6 class="card-subtitle mb-2 text-muted"><%=application.jobTitle%></h6>
@@ -13,10 +14,9 @@
         <div id="card-buttons"
 
           <form action="/applications/<%=application._id%>?_method=DELETE" method="POST">
-            <input type="submit" value="Delete"/>
+            <input  class="btn btn-primary"type="submit" value="Delete"/>
           </form>
-          <button id="edit-btn"type="button" name="button"><a href="/applications/<%=application.id%>/edit">Edit</a></button>
-          <button type="button" name="button"><a href="/applications">Back</a></button>
+
         </div>
       </div>
 

@@ -46,21 +46,37 @@
 #card-style {
   margin: auto;
   margin-top: 6%;
-  background-color: aliceblue;
+  background-color: lightblue;
 }
 #card-buttons {
   display: flex;
   justify-content: space-around;
 }
-#edit-form {
+/* #edit-form {
   width: fit-content;
   margin: auto;
   padding: 6%;
-}
+} */
 #slot {
   padding: 6%;
   margin-bottom: 2%;
 }
 #number {
-  width: 18%;
+  width: -webkit-fill-available;
+}
+#edit-btn {
+  color: black;
+  border-radius: 0.2;
+  text-decoration: none;
+  border-color: lightgray;
+}
+.card-body {
+  box-shadow: 6px 6px black;
+}
+#edit-btn:hover{
+  color: blue;
+}
+#new-card {
+  margin: auto;
+  padding: 1%;
 }

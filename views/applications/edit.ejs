@@ -3,19 +3,41 @@
     <%- include ('../partials/nav.ejs') %>
 
     <h2>Edit Job Application</h2>
-    <form class="" action="/applications/<%=application.id%>?_method=PUT" method="POST">
-      <div id="edit-form">
 
 
-      <input id="slot" type="text" name="companyName" placeholder="Company Name" value="<%=application.companyName%>" /><br>
-      <input id="slot" type="text" name="jobTitle" placeholder="Job Title" value="<%=application.jobTitle%>"/><br>
-      <input id="slot" type="text" name="location" placeholder="Location" value="<%=application.location%>"/><br>
-      <input id="slot" type="text" name="jobLink" placeholder="<Link>" value="<%=application.jobLink%>"/><br>
-      <input id="slot" type="number" name="desired" placeholder="Rank" value="<%=application.desired%>"/><br>
-      <input id="slot" type="date" name="date" value="<%=application.date%>"/><br>
-      <input type="submit" value="Edit">
-      <button type="button" name="button"><a href="/applications/<%=application.id%>">Back</a></button>
+  <div class="card" id="card-style" style="width: 40%; height:400px;">
+        <button id="edit-btn"type="button" name="button"><a id="edit-btn"href="/applications">Back</a></button>
+
+      <form id="new-card"action="/applications/<%=application.id%>?_method=PUT" method="POST">
+        <div class="form-group">
+
+
+        <input type="text" name="companyName" placeholder="Company Name" value="<%=application.companyName%>" /><br>
+        </div>
+
+        <div class="form-group">
+        <input value="<%=application.jobTitle%>" type="text" name="jobTitle" placeholder="Job Title"/><br>
+        </div>
+
+        <div class="form-group">
+        <input value="<%=application.location%>" type="text" name="location" placeholder="Location"/><br>
+        </div>
+
+        <div class="form-group">
+        <input value="<%=application.jobLink%>" type="text" name="jobLink" placeholder="<Job Link>"/><br>
+        </div>
+
+        <div class="form-group">
+        <input value="<%=application.desired%>" id="number" type="number" name="desired" min="0" max="5" placeholder="Rank (0-5)"/><br>
+        </div>
+
+        <div class="form-group">
+        <input value="<%=application.date%>" type="date" name="date" placeholder="Date Applied"/><br>
+        </div>
+
+        <input class="btn btn-primary"type="submit" value="Edit Job App">
+      </form>
       </div>
-    </form>
+
   </body>
 </html>

@@ -1,6 +1,7 @@
 const express = require('express')
 const Application = require('../models/applications.js')
 const applications = express.Router()
+const User = require('../models/users.js')
 const isAuthenticated = (req,res,next) => {
   if (req.session.currentUser) {
     return next()
