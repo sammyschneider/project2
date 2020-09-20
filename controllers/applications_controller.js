@@ -9,6 +9,13 @@ const isAuthenticated = (req,res,next) => {
     res.redirect('/')
   }
 }
+//ABOUT
+applications.get('/about', isAuthenticated, (req,res) => {
+  res.render('applications/about.ejs',{
+    currentUser: req.session.currentUser
+  })
+})
+
 // NEW
 applications.get('/new', isAuthenticated, (req,res) => {
   res.render('applications/new.ejs', {
@@ -61,5 +68,6 @@ applications.get('/', isAuthenticated, (req,res) => {
     })
   })
 })
+
 
 module.exports = applications;

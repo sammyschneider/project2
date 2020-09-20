@@ -22,11 +22,12 @@
   text-decoration: none;
 }
 .app-button{
-  border-radius: 1em;
+  /* border-radius: 1em; */
   font-family: -webkit-body;
-  background-color: aliceblue;
-  border-color: blueviolet;
+  background-color: white;
+  border-color: rgb(0 123 255 / 17%);
   width: 100%;
+  box-shadow: 2px 2px 5px black;
 }
 .jumbotron {
   margin-top: 20%;
@@ -87,4 +88,7 @@
 }
 .nav-link {
   color: black;
+}
+.bg {
+  background-color: rgb(0 123 255 / 17%);
 }

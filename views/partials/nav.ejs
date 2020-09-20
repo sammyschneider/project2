@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/applications">Job Applications Tracker</a>
+<nav class="navbar navbar-light bg">
+  <a class="navbar-brand" href="/applications" style="font-family: fantasy">Job Applications Tracker</a>
   <% if (currentUser) { %>
-  <ul class="nav nav-pills">
+  <ul class="nav justify-content-end">
     <li class="nav-item active">
         <a class="nav-link" href="/applications">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">About</a>
+      <a class="nav-link" href="/applications/about">About</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/applications/new">New Job App</a>
