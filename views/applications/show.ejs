@@ -11,13 +11,13 @@
         <p class="card-text">Link: <a href="<%=application.jobLink%>">google</a></p><br>
         <p class="card-text">Rating: <%=application.desired%>/5</p><br>
         <p class="card-text">Date Applied: <%=application.date%></p><br>
-        <div id="card-buttons"
+        <!-- <div id="card-buttons" -->
 
-          <form action="/applications/<%=application._id%>?_method=DELETE" method="POST">
+          <form action="/applications/<%=application.id%>?_method=DELETE" method="POST">
             <input  class="btn btn-primary"type="submit" value="Delete"/>
           </form>
 
-        </div>
+        <!-- </div> -->
       </div>
 
     </div>

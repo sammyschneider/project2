@@ -28,6 +28,7 @@ applications.get('/:id/edit',(req,res) => {
 applications.delete('/:id', (req,res) => {
   Application.findByIdAndRemove(req.params.id, (error, deletedApp) => {
     res.redirect('/applications')
+    console.log(deletedApp);
   })
 })
 //SHOW
