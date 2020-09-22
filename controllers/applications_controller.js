@@ -35,7 +35,7 @@ applications.get('/:id/edit',(req,res) => {
 // DELETE
 applications.delete('/:id', (req,res) => {
   Application.findByIdAndRemove(req.params.id, (error, deletedApp) => {
-    User.findOne(req.session.currentUser, (err,foundUser) => {
+    User.findOne({username:req.session.currentUser.username}, (err,foundUser) => {
       foundUser.applications.id(req.params.id).remove();
       foundUser.save((err, data) => {
         res.redirect('/applications')
@@ -56,9 +56,11 @@ applications.get('/:id', isAuthenticated, (req,res) => {
 })
 //UPDATE
 applications.put('/:id', (req,res) => {
-  Application.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, foundApp) => {
-    User.findOne(req.session.currentUser, (err, foundUser) => {
-      console.log(foundApp);
+  Application.findOneAndUpdate(req.params.id, req.body, {new:true}, (error, foundApp) => {
+    User.findOne({username: req.session.currentUser.username}, (err, foundUser) => {
+
+      // console.log(foundApp);
+      foundUser.applications.id(req.params.id).remove()
       foundUser.applications.push(foundApp);
       foundUser.save((err,data) => {
           res.redirect('/applications')
@@ -69,13 +71,13 @@ applications.put('/:id', (req,res) => {
 })
 //CREATE
 applications.post('/', (req,res) => {
-  User.findOne(req.session.currentUser, (err,foundUser) => {
+  User.findOne({username:req.session.currentUser.username}, (err,foundUser) => {
     Application.create(req.body, (error, createdApp) => {
       foundUser.applications.push(createdApp);
       foundUser.save((err,data) => {
         res.redirect('/applications');
         // console.log(data);
-        console.log(createdApp);
+        // console.log(data);
       })
     })
   })
@@ -83,7 +85,7 @@ applications.post('/', (req,res) => {
 })
 //INDEX
 applications.get('/', isAuthenticated, (req,res) => {
-  User.findOne(req.session.currentUser, (err,foundUser) => {
+  User.findOne({username:req.session.currentUser.username}, (err,foundUser) => {
 // console.log(foundUser.applications);
     // let something = foundUser.applications;
     console.log(foundUser);
