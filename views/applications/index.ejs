@@ -2,9 +2,10 @@
   <body>
     <%- include ('../partials/nav.ejs') %>
   <div class="apps">
-    <% for (let i=0;i<applications.length;i++) { %>
+    <%let apps=applications.applications%>
+    <% for (let i=0;i<apps.length;i++) { %>
         <div class="app-circle">
-            <button class="app-button"><a class="app-link" href="/applications/<%=applications[i].id%>"><%=applications[i].companyName%></a></button>
+            <button class="app-button"><a class="app-link" href="/applications/<%=apps[i].id%>"><%=apps[i].companyName%></a></button>
         </div>
 
 

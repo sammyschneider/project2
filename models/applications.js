@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// const User = require('./models/users.js')
 
 const appSchema = new mongoose.Schema({
   companyName: {type: String, required: true},

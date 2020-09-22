@@ -2,6 +2,8 @@ const express = require('express')
 const Application = require('../models/applications.js')
 const applications = express.Router()
 const User = require('../models/users.js')
+
+// MIDDLEWARE
 const isAuthenticated = (req,res,next) => {
   if (req.session.currentUser) {
     return next()
@@ -15,7 +17,6 @@ applications.get('/about', isAuthenticated, (req,res) => {
     currentUser: req.session.currentUser
   })
 })
-
 // NEW
 applications.get('/new', isAuthenticated, (req,res) => {
   res.render('applications/new.ejs', {
@@ -34,8 +35,13 @@ applications.get('/:id/edit',(req,res) => {
 // DELETE
 applications.delete('/:id', (req,res) => {
   Application.findByIdAndRemove(req.params.id, (error, deletedApp) => {
-    res.redirect('/applications')
-    console.log(deletedApp);
+    User.findOne(req.session.currentUser, (err,foundUser) => {
+      foundUser.applications.id(req.params.id).remove();
+      foundUser.save((err, data) => {
+        res.redirect('/applications')
+        console.log(data);
+      })
+    })
   })
 })
 //SHOW
@@ -45,29 +51,49 @@ applications.get('/:id', isAuthenticated, (req,res) => {
       application: foundApp,
       currentUser: req.session.currentUser
     })
+    // console.log(foundApp.jobLink);
   })
 })
 //UPDATE
 applications.put('/:id', (req,res) => {
   Application.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, foundApp) => {
-    res.redirect('/applications')
+    User.findOne(req.session.currentUser, (err, foundUser) => {
+      console.log(foundApp);
+      foundUser.applications.push(foundApp);
+      foundUser.save((err,data) => {
+          res.redirect('/applications')
+          console.log(data);
+      })
     })
   })
+})
 //CREATE
 applications.post('/', (req,res) => {
-  Application.create(req.body, (error, createdApp) => {
-    res.redirect('/applications')
+  User.findOne(req.session.currentUser, (err,foundUser) => {
+    Application.create(req.body, (error, createdApp) => {
+      foundUser.applications.push(createdApp);
+      foundUser.save((err,data) => {
+        res.redirect('/applications');
+        // console.log(data);
+        console.log(createdApp);
+      })
+    })
   })
+
 })
 //INDEX
 applications.get('/', isAuthenticated, (req,res) => {
-  Application.find({}, (error, allApps) => {
+  User.findOne(req.session.currentUser, (err,foundUser) => {
+// console.log(foundUser.applications);
+    // let something = foundUser.applications;
+    console.log(foundUser);
     res.render('applications/index.ejs', {
-      applications: allApps,
-      currentUser: req.session.currentUser
+        applications: foundUser,
+        currentUser: req.session.currentUser
+      })
     })
   })
-})
+
 
 
 module.exports = applications;
