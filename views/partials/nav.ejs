@@ -1,6 +1,8 @@
 <nav class="navbar navbar-light bg">
   <a class="navbar-brand" href="/applications" style="font-family: fantasy">Job Applications Tracker</a>
   <% if (currentUser) { %>
+  <a class="navbar-brand" href="/applications" style="font-family: -webkit-body">Welcome <%=currentUser.username%>!</a>    <%}%>
+  <% if (currentUser) { %>
   <ul class="nav justify-content-end">
     <li class="nav-item active">
         <a class="nav-link" href="/applications">Home</a>
